@@ -14,7 +14,7 @@ from keras.layers import Dense, Dropout, LSTM, Activation
 np.random.seed(1234)
 PYTHONHASHSEED = 0
 # define path to save model [;, ]
-model_path = 'Output/regression_model.h5'
+model_path = 'Output/regression_model2.h5'
 
 # read training data # read
 train_df = pd.read_csv('data/train/train_FD002.txt', sep=" ", header=None,engine='python')
@@ -243,7 +243,7 @@ plt.ylabel('R^2')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
-fig_acc.savefig("Output/model_r2.png")
+fig_acc.savefig("Output/E2model_r2.png")
 
 # summarize history for MAE
 fig_acc = plt.figure(figsize=(10, 10))
@@ -254,7 +254,7 @@ plt.ylabel('MAE')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
-fig_acc.savefig("Output/model_mae.png")
+fig_acc.savefig("Output/E2model_mae.png")
 
 # summarize history for Loss
 fig_acc = plt.figure(figsize=(10, 10))
@@ -265,7 +265,7 @@ plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
-fig_acc.savefig("Output/model_regression_loss.png")
+fig_acc.savefig("Output/E2model_regression_loss.png")
 
 # training metrics
 scores = model.evaluate(seq_array, label_array, verbose=1, batch_size=200)
@@ -276,7 +276,7 @@ y_pred = model.predict(seq_array,verbose=1, batch_size=200)
 y_true = label_array
 
 test_set = pd.DataFrame(y_pred)
-test_set.to_csv('Output/submit_train.csv', index = None)
+test_set.to_csv('Output/E2submit_train.csv', index = None)
 
 ##################################
 # EVALUATE ON TEST DATA
@@ -314,7 +314,7 @@ if os.path.isfile(model_path):
     y_true_test = label_array_test_last
 
     test_set = pd.DataFrame(y_pred_test)
-    test_set.to_csv('Output/submit_test.csv', index = None)
+    test_set.to_csv('Output/E2submit_test.csv', index = None)
 
     # Plot in blue color the predicted data and in green color the
     # actual data to verify visually the accuracy of the model.
@@ -326,4 +326,4 @@ if os.path.isfile(model_path):
     plt.xlabel('row')
     plt.legend(['predicted', 'actual data'], loc='upper left')
     plt.show()
-    fig_verify.savefig("Output/model_regression_verify.png")
+    fig_verify.savefig("Output/E2model_regression_verify.png")
