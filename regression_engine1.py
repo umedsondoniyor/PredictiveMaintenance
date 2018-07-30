@@ -14,7 +14,7 @@ from keras.layers import Dense, Dropout, LSTM, Activation
 np.random.seed(1234)
 PYTHONHASHSEED = 0
 # define path to save model [;, ]
-model_path = 'Output/regression_model.h5'
+model_path = 'Output/engine1/regression_model.h5'
 
 # read training data # read
 train_df = pd.read_csv('data/train/train_FD001.txt', sep=" ", header=None,engine='python')
@@ -226,7 +226,7 @@ model.compile(loss='mean_squared_error', optimizer='rmsprop',metrics=['mae',r2_k
 print(model.summary())
 
 # fit the network
-history = model.fit(seq_array, label_array, epochs=50, batch_size=200, validation_split=0.05, verbose=2,
+history = model.fit(seq_array, label_array, epochs=10, batch_size=200, validation_split=0.05, verbose=2,
           callbacks = [keras.callbacks.EarlyStopping(monitor='val_loss', min_delta=0, patience=10, verbose=0, mode='min'),
                        keras.callbacks.ModelCheckpoint(model_path,monitor='val_loss', save_best_only=True, mode='min', verbose=0)]
           )
@@ -243,7 +243,7 @@ plt.ylabel('R^2')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
-fig_acc.savefig("Output/model_r2.png")
+fig_acc.savefig("Output/engine1/model_r2.png")
 
 # summarize history for MAE
 fig_acc = plt.figure(figsize=(10, 10))
@@ -254,7 +254,7 @@ plt.ylabel('MAE')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
-fig_acc.savefig("Output/model_mae.png")
+fig_acc.savefig("Output/engine1/model_mae.png")
 
 # summarize history for Loss
 fig_acc = plt.figure(figsize=(10, 10))
@@ -265,7 +265,7 @@ plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
-fig_acc.savefig("Output/model_regression_loss.png")
+fig_acc.savefig("Output/engine1/model_regression_loss.png")
 
 # training metrics
 scores = model.evaluate(seq_array, label_array, verbose=1, batch_size=200)
@@ -276,15 +276,17 @@ y_pred = model.predict(seq_array,verbose=1, batch_size=200)
 y_true = label_array
 
 test_set = pd.DataFrame(y_pred)
-test_set.to_csv('Output/submit_train.csv', index = None)
+test_set.to_csv('Output/engine1/submit_train.csv', index = None)
 
 ##################################
 # EVALUATE ON TEST DATA
 ##################################
 
 # We pick the last sequence for each id in the test data
-seq_array_test_last = [test_df[test_df['id']==id][sequence_cols].values[-sequence_length:]
-                       for id in test_df['id'].unique() if len(test_df[test_df['id']==id]) >= sequence_length]
+seq_array_test_last = []
+for id in test_df['id'].unique():
+    if len(test_df[test_df['id'] == id]) >= sequence_length:
+        seq_array_test_last.append(test_df[test_df['id'] == id][sequence_cols].values[-sequence_length:])
 
 seq_array_test_last = np.asarray(seq_array_test_last).astype(np.float32)
 print("seq_array_test_last")
@@ -314,7 +316,7 @@ if os.path.isfile(model_path):
     y_true_test = label_array_test_last
 
     test_set = pd.DataFrame(y_pred_test)
-    test_set.to_csv('Output/submit_test.csv', index = None)
+    test_set.to_csv('Output/engine1/submit_test.csv', index = None)
 
     # Plot in blue color the predicted data and in green color the
     # actual data to verify visually the accuracy of the model.
@@ -326,4 +328,4 @@ if os.path.isfile(model_path):
     plt.xlabel('row')
     plt.legend(['predicted', 'actual data'], loc='upper left')
     plt.show()
-    fig_verify.savefig("Output/model_regression_verify.png")
+    fig_verify.savefig("Output/engine1/model_regression_verify.png")
