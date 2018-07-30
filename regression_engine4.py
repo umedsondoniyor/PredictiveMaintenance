@@ -226,7 +226,7 @@ model.compile(loss='mean_squared_error', optimizer='rmsprop',metrics=['mae',r2_k
 print(model.summary())
 
 # fit the network
-history = model.fit(seq_array, label_array, epochs=50, batch_size=200, validation_split=0.05, verbose=2,
+history = model.fit(seq_array, label_array, epochs=20, batch_size=200, validation_split=0.05, verbose=2,
           callbacks = [keras.callbacks.EarlyStopping(monitor='val_loss', min_delta=0, patience=10, verbose=0, mode='min'),
                        keras.callbacks.ModelCheckpoint(model_path,monitor='val_loss', save_best_only=True, mode='min', verbose=0)]
           )

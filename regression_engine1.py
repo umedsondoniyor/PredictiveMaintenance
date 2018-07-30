@@ -226,7 +226,7 @@ model.compile(loss='mean_squared_error', optimizer='rmsprop',metrics=['mae',r2_k
 print(model.summary())
 
 # fit the network
-history = model.fit(seq_array, label_array, epochs=10, batch_size=200, validation_split=0.05, verbose=2,
+history = model.fit(seq_array, label_array, epochs=20, batch_size=200, validation_split=0.05, verbose=2,
           callbacks = [keras.callbacks.EarlyStopping(monitor='val_loss', min_delta=0, patience=10, verbose=0, mode='min'),
                        keras.callbacks.ModelCheckpoint(model_path,monitor='val_loss', save_best_only=True, mode='min', verbose=0)]
           )
@@ -283,10 +283,8 @@ test_set.to_csv('Output/engine1/submit_train.csv', index = None)
 ##################################
 
 # We pick the last sequence for each id in the test data
-seq_array_test_last = []
-for id in test_df['id'].unique():
-    if len(test_df[test_df['id'] == id]) >= sequence_length:
-        seq_array_test_last.append(test_df[test_df['id'] == id][sequence_cols].values[-sequence_length:])
+seq_array_test_last = [test_df[test_df['id']==id][sequence_cols].values[-sequence_length:]
+                       for id in test_df['id'].unique() if len(test_df[test_df['id']==id]) >= sequence_length]
 
 seq_array_test_last = np.asarray(seq_array_test_last).astype(np.float32)
 print("seq_array_test_last")
