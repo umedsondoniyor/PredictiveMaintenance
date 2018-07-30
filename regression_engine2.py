@@ -17,7 +17,7 @@ PYTHONHASHSEED = 0
 model_path = 'Output/engine2/regression_model2.h5'
 
 # read training data # read
-train_df = pd.read_csv('data/train/train_FD002.txt', sep=" ", header=None,engine='python')
+train_df = pd.read_csv('data/train/train_2.txt', sep=" ", header=None,engine='python')
 train_df.drop(train_df.columns[[26, 27]], axis=1, inplace=True)
 train_df.columns = ['id', 'cycle', 'setting1', 'setting2', 'setting3', 's1', 's2', 's3',
                      's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11', 's12', 's13', 's14',
@@ -25,7 +25,7 @@ train_df.columns = ['id', 'cycle', 'setting1', 'setting2', 'setting3', 's1', 's2
 
 
 # read test data
-test_df = pd.read_csv('data/test/test_FD002.txt', sep=" ", header=None,engine='python')
+test_df = pd.read_csv('data/test/test_2.txt', sep=" ", header=None,engine='python')
 test_df.drop(test_df.columns[[26, 27]], axis=1, inplace=True)
 test_df.columns = ['id', 'cycle', 'setting1', 'setting2', 'setting3', 's1', 's2', 's3',
                      's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11', 's12', 's13', 's14',
@@ -33,7 +33,7 @@ test_df.columns = ['id', 'cycle', 'setting1', 'setting2', 'setting3', 's1', 's2'
 
 
 # read ground truth data# read
-truth_df = pd.read_csv('data/RUL/RUL_FD002.txt', sep=" ", header=None,engine='python')
+truth_df = pd.read_csv('data/RUL/RUL_2.txt', sep=" ", header=None,engine='python')
 truth_df.drop(truth_df.columns[[1]], axis=1, inplace=True)
 
 # Data Labeling - generate column RUL
