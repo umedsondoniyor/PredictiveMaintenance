@@ -6,11 +6,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import os
+
 from sklearn import preprocessing
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, LSTM, Activation
 
-# Setting seed for reproducability
+# Setting seed for reproducibility
 np.random.seed(1234)
 PYTHONHASHSEED = 0
 # define path to save model [;, ]
