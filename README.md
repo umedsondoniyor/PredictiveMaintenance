@@ -59,7 +59,7 @@ Save a copy in your drive and enjoy it!
 
 
 #### Results of Regression model
-1st Engine Result done with 59 epoches
+__1st Engine Result done with 59 epoches__
 
 Train on 14849 samples, validate on 782 samples
 
@@ -82,7 +82,7 @@ The following pictures shows the trend of loss Function, Mean Absolute Error, R^
 </p>
 
 
-2nd Engine Result done with 48 epoches
+__2nd Engine Result done with 48 epoches__
 
 Train on 38721 samples, validate on 2038 samples
 
@@ -92,7 +92,7 @@ Train on 38721 samples, validate on 2038 samples
 
 The following pictures shows the trend of loss Function, Mean Absolute Error, R^2 and actual data compared to predicted data: 
 <p align="center">
-  <img src="https://github.com/umedsondoniyor/PredictiveMaintenance/blob/master/Output/colab/engine2/model_loss.png"/>
+  <img src="https://github.com/umedsondoniyor/PredictiveMaintenance/blob/master/Output/colab/engine2/model_loss.png"/> 
 </p>
 <p align="center">
   <img src="https://github.com/umedsondoniyor/PredictiveMaintenance/blob/master/Output/colab/engine2/model_MAE.png"/>
@@ -105,7 +105,7 @@ The following pictures shows the trend of loss Function, Mean Absolute Error, R^
 </p>
 
 
-3rd Engine Result done with 67 epoches
+__3rd Engine Result done with 67 epoches__
 
 Train on 18734 samples, validate on 986 samples
 
@@ -129,7 +129,7 @@ The following pictures shows the trend of loss Function, Mean Absolute Error, R^
 
 
 
-4th Engine Result done with 87 epoches
+__4th Engine Result done with 87 epoches__
 
 Train on 46359 samples, validate on 2440 samples
 
