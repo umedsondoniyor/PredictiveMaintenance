@@ -16,10 +16,13 @@ my assumption is the effort each engine gets when it starts are not the same tha
 to build a model and train them separately afterwards test them separately either.
 
 Approach looks like this:
-1st model(train)-> (1test with 1RUL)
-2nd model(train)-> (2test with 1RUL)
-3rd model(train)-> (3test with 1RUL)
-4th model(train)-> (4test with 1RUL)
+* 1st model(train)-> (1test with 1RUL)
+
+* 2nd model(train)-> (2test with 1RUL)
+
+* 3rd model(train)-> (3test with 1RUL)
+
+* 4th model(train)-> (4test with 1RUL)
 
 ### What I did?
 First of all I developed the model by using PyCharm IDE however I've got a problem with performance
