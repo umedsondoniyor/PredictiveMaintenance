@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="be354276-d6ee-4cd9-8c52-2e061b06a56c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/regression_engine1.py" beforeDir="false" afterPath="$PROJECT_DIR$/regression_engine1.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +33,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="md" value="1" />
           <entry key="png" value="1" />
           <entry key="py" value="22" />
           <entry key="txt" value="18" />
@@ -39,6 +42,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="1" />
+          <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="18" />
           <entry key="Python" value="22" />
         </counts>
@@ -46,25 +50,39 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="8" />
-          <entry key="py" value="308" />
-          <entry key="txt" value="99" />
+          <entry key="md" value="104" />
+          <entry key="py" value="354" />
+          <entry key="txt" value="166" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="107" />
-          <entry key="Python" value="308" />
+          <entry key="Markdown" value="104" />
+          <entry key="PLAIN_TEXT" value="174" />
+          <entry key="Python" value="354" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/regression_engine1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="56">
-              <caret line="303" column="46" selection-start-line="303" selection-start-column="46" selection-end-line="303" selection-end-column="46" />
+            <state relative-caret-position="204">
+              <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="17">
+                <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -72,8 +90,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/regression_engine2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+            <state relative-caret-position="136">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -81,15 +99,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/regression_engine3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+            <state relative-caret-position="136">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/regression_engine4.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -116,10 +138,11 @@
         <option value="$PROJECT_DIR$/Dataset/PM_test.txt" />
         <option value="$PROJECT_DIR$/regression.py" />
         <option value="$PROJECT_DIR$/refression_all_engines.py" />
-        <option value="$PROJECT_DIR$/regression_engine3.py" />
         <option value="$PROJECT_DIR$/regression_engine2.py" />
+        <option value="$PROJECT_DIR$/regression_engine3.py" />
         <option value="$PROJECT_DIR$/regression_engine4.py" />
         <option value="$PROJECT_DIR$/regression_engine1.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -161,6 +184,12 @@
               <item name="PredictiveMaintenance" type="462c0819:PsiDirectoryNode" />
               <item name="Output" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="PredictiveMaintenance" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PredictiveMaintenance" type="462c0819:PsiDirectoryNode" />
+              <item name="Output" type="462c0819:PsiDirectoryNode" />
+              <item name="colab" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -175,16 +204,17 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\umedzhon\PycharmProjects\PredictiveMaintenance\Output\colab" />
+      <recent name="C:\Users\umedzhon\PycharmProjects\PredictiveMaintenance\data" />
+      <recent name="C:\Users\umedzhon\PycharmProjects\PredictiveMaintenance\Dataset" />
+      <recent name="C:\Users\umedzhon\PycharmProjects\PredictiveMaintenance" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\umedzhon\PycharmProjects\PredictiveMaintenance\data\train" />
       <recent name="C:\Users\umedzhon\PycharmProjects\PredictiveMaintenance\data\test" />
       <recent name="C:\Users\umedzhon\PycharmProjects\PredictiveMaintenance\data\RUL" />
       <recent name="C:\Users\umedzhon\PycharmProjects\PredictiveMaintenance\Dataset" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\umedzhon\PycharmProjects\PredictiveMaintenance\data" />
-      <recent name="C:\Users\umedzhon\PycharmProjects\PredictiveMaintenance\Dataset" />
-      <recent name="C:\Users\umedzhon\PycharmProjects\PredictiveMaintenance" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -388,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1532938900838</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="repository of outputs added which has been tested on colab">
+      <created>1533072831733</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1533072831733</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -402,8 +439,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1785174" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.1785174" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -464,7 +502,8 @@
     <MESSAGE value="all engines regression first attempt" />
     <MESSAGE value="all engines regression second attempt" />
     <MESSAGE value="data names changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="data names changed" />
+    <MESSAGE value="repository of outputs added which has been tested on colab" />
+    <option name="LAST_COMMIT_MESSAGE" value="repository of outputs added which has been tested on colab" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/__init__.py" />
@@ -550,29 +589,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/ALL_test.txt" />
     <entry file="file://$PROJECT_DIR$/refression_all_engines.py" />
-    <entry file="file://$PROJECT_DIR$/regression_engine1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="303" column="46" selection-start-line="303" selection-start-column="46" selection-end-line="303" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/regression_engine2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/regression_engine3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/regression_engine4.py">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/regression_engine1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="17">
+            <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

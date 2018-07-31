@@ -17,13 +17,12 @@ PYTHONHASHSEED = 0
 # define path to save model [;, ]
 model_path = 'Output/engine1/regression_model.h5'
 
-# read training data # read
+# read training data
 train_df = pd.read_csv('data/train/train_1.txt', sep=" ", header=None,engine='python')
 train_df.drop(train_df.columns[[26, 27]], axis=1, inplace=True)
 train_df.columns = ['id', 'cycle', 'setting1', 'setting2', 'setting3', 's1', 's2', 's3',
                      's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11', 's12', 's13', 's14',
                      's15', 's16', 's17', 's18', 's19', 's20', 's21']
-
 
 # read test data
 test_df = pd.read_csv('data/test/test_1.txt', sep=" ", header=None,engine='python')
@@ -32,10 +31,14 @@ test_df.columns = ['id', 'cycle', 'setting1', 'setting2', 'setting3', 's1', 's2'
                      's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11', 's12', 's13', 's14',
                      's15', 's16', 's17', 's18', 's19', 's20', 's21']
 
-
-# read ground truth data# read
+# read ground truth data or Remaining Useful Life
 truth_df = pd.read_csv('data/RUL/RUL_1.txt', sep=" ", header=None,engine='python')
 truth_df.drop(truth_df.columns[[1]], axis=1, inplace=True)
+
+
+
+
+
 
 # Data Labeling - generate column RUL
 rul = pd.DataFrame(train_df.groupby('id')['cycle'].max()).reset_index()
@@ -46,17 +49,22 @@ train_df.drop('max', axis=1, inplace=True)
 train_df.head()
 
 
+
+
 # generate label columns for training data
 w1 = 30
 w0 = 15
-train_df['label1'] = np.where(train_df['RUL'] <= w1, 1, 0 )
+train_df['label1'] = np.where(train_df['RUL'] <= w1, 1, 0)
 train_df['label2'] = train_df['label1']
 train_df.loc[train_df['RUL'] <= w0, 'label2'] = 2
 train_df.head()
 
+
+
+
 # MinMax normalization
 train_df['cycle_norm'] = train_df['cycle']
-cols_normalize = train_df.columns.difference(['id','cycle','RUL','label1','label2'])
+cols_normalize = train_df.columns.difference(['id', 'cycle', 'RUL', 'label1', 'label2'])
 min_max_scaler = preprocessing.MinMaxScaler()
 norm_train_df = pd.DataFrame(min_max_scaler.fit_transform(train_df[cols_normalize]),
                              columns=cols_normalize,
@@ -77,7 +85,7 @@ train_df.drop('max', axis=1, inplace=True)
 train_df.head()
 
 
-# generate column max for test data# genera
+# generate column max for test data#
 rul = pd.DataFrame(test_df.groupby('id')['cycle'].max()).reset_index()
 rul.columns = ['id', 'max']
 truth_df.columns = ['more']
@@ -113,15 +121,15 @@ engine_id3_50cycleWindow2 = engine_id3_50cycleWindow[cols2]
 
 
 
-# plotting sensor data for engine ID 3 prior to a failure point - sensors 1-10 # plotti
+# plotting sensor data for engine ID 3 prior to a failure point - sensors 1-10 #
 ax1 = engine_id3_50cycleWindow1.plot(subplots=True, sharex=True, figsize=(20,20))
 
 
-# plotting sensor data for engine ID 3 prior to a failure point - sensors 11-21 # plotti
+# plotting sensor data for engine ID 3 prior to a failure point - sensors 11-21 #
 ax2 = engine_id3_50cycleWindow2.plot(subplots=True, sharex=True, figsize=(20,20))
 
 
-# function to reshape features into (samples, time steps, features) # functi
+# function to reshape features into (samples, time steps, features) #
 def gen_sequence(id_df, seq_length, seq_cols):
     """ Only sequences that meet the window-length are considered, no padding is used. This means for testing
     we need to drop those which are below the window-length. An alternative would be to pad sequences so that
