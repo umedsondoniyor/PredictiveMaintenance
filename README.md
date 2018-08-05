@@ -9,6 +9,9 @@ but also feel the data. As I understand from the article there're 4 engines data
 The network uses simulated aircraft sensor values to predict when an aircraft engine will fail in the future so that maintenance can be planned in advance.
 The question is "Given these aircraft engine operation and failure events history, can we predict when an in-service engine will fail?"
 
+### My assumption
+To be more specific my assumption on this project is the result maay differ for the same engine if it's used in different airport or destination because the frequency of landing and taking off the plane with different destination changes for every destination. 
+
 ### My approach
 My approach is solving a task with machine learning model:
   	
