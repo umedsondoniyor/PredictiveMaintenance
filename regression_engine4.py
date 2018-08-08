@@ -65,6 +65,17 @@ join_df = train_df[train_df.columns.difference(cols_normalize)].join(norm_train_
 train_df = join_df.reindex(columns = train_df.columns)
 train_df.head()
 
+# MinMax normalization (from 0 to 1)
+test_df['cycle_norm'] = test_df['cycle']
+norm_test_df = pd.DataFrame(min_max_scaler.transform(test_df[cols_normalize]),
+                            columns=cols_normalize,
+                            index=test_df.index)
+test_join_df = test_df[test_df.columns.difference(cols_normalize)].join(norm_test_df)
+test_df = test_join_df.reindex(columns = test_df.columns)
+test_df = test_df.reset_index(drop=True)
+print(test_df.head())
+
+
 train_dftrain_d  = train_df.sort_values(['id','cycle'])
 train_df.head()
 

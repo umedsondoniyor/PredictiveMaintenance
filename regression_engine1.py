@@ -76,6 +76,18 @@ train_df.head()
 train_dftrain_d  = train_df.sort_values(['id','cycle'])
 train_df.head()
 
+# MinMax normalization (from 0 to 1)
+test_df['cycle_norm'] = test_df['cycle']
+norm_test_df = pd.DataFrame(min_max_scaler.transform(test_df[cols_normalize]),
+                            columns=cols_normalize,
+                            index=test_df.index)
+test_join_df = test_df[test_df.columns.difference(cols_normalize)].join(norm_test_df)
+test_df = test_join_df.reindex(columns = test_df.columns)
+test_df = test_df.reset_index(drop=True)
+print(test_df.head())
+
+
+
 # Data Labeling - generate column RUL
 rul = pd.DataFrame(train_df.groupby('id')['cycle'].max()).reset_index()
 rul.columns = ['id', 'max']
