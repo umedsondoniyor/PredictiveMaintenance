@@ -46,7 +46,10 @@ train_df.drop('max', axis=1, inplace=True)
 train_df.head()
 
 
-# generate label columns for training data
+# generate label columns for training data training data is labeled, where "RUL", label1", and "label2" are labels
+# for regression, binary classification, and multi-class classification where I only did with regression
+# Here w0 and w1 are predefined use case related parameters which are used to label the training data.
+# The customer needs to decide how far ahead of time the alert of failure should trigger before the actual failure event.
 w1 = 30
 w0 = 15
 train_df['label1'] = np.where(train_df['RUL'] <= w1, 1, 0 )

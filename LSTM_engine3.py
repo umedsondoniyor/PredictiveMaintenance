@@ -15,10 +15,10 @@ from keras.layers import Dense, Dropout, LSTM, Activation
 np.random.seed(1234)
 PYTHONHASHSEED = 0
 # define path to save model [;, ]
-model_path = 'Output/engine2/regression_model2.h5'
+model_path = 'Output/engine3/regression_model.h5'
 
 # read training data # read
-train_df = pd.read_csv('data/train/train_2.txt', sep=" ", header=None,engine='python')
+train_df = pd.read_csv('data/train/train_3.txt', sep=" ", header=None,engine='python')
 train_df.drop(train_df.columns[[26, 27]], axis=1, inplace=True)
 train_df.columns = ['id', 'cycle', 'setting1', 'setting2', 'setting3', 's1', 's2', 's3',
                      's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11', 's12', 's13', 's14',
@@ -26,7 +26,7 @@ train_df.columns = ['id', 'cycle', 'setting1', 'setting2', 'setting3', 's1', 's2
 
 
 # read test data
-test_df = pd.read_csv('data/test/test_2.txt', sep=" ", header=None,engine='python')
+test_df = pd.read_csv('data/test/test_3.txt', sep=" ", header=None,engine='python')
 test_df.drop(test_df.columns[[26, 27]], axis=1, inplace=True)
 test_df.columns = ['id', 'cycle', 'setting1', 'setting2', 'setting3', 's1', 's2', 's3',
                      's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11', 's12', 's13', 's14',
@@ -34,7 +34,7 @@ test_df.columns = ['id', 'cycle', 'setting1', 'setting2', 'setting3', 's1', 's2'
 
 
 # read ground truth data# read
-truth_df = pd.read_csv('data/RUL/RUL_2.txt', sep=" ", header=None,engine='python')
+truth_df = pd.read_csv('data/RUL/RUL_3.txt', sep=" ", header=None,engine='python')
 truth_df.drop(truth_df.columns[[1]], axis=1, inplace=True)
 
 # Data Labeling - generate column RUL
@@ -46,7 +46,10 @@ train_df.drop('max', axis=1, inplace=True)
 train_df.head()
 
 
-# generate label columns for training data
+# generate label columns for training data training data is labeled, where "RUL", label1", and "label2" are labels
+# for regression, binary classification, and multi-class classification where I only did with regression
+# Here w0 and w1 are predefined use case related parameters which are used to label the training data.
+# The customer needs to decide how far ahead of time the alert of failure should trigger before the actual failure event.
 w1 = 30
 w0 = 15
 train_df['label1'] = np.where(train_df['RUL'] <= w1, 1, 0 )
@@ -254,7 +257,7 @@ plt.ylabel('R^2')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
-fig_acc.savefig("Output/engine2/model_r2.png")
+fig_acc.savefig("Output/engine3/model_r2.png")
 
 # summarize history for MAE
 fig_acc = plt.figure(figsize=(10, 10))
@@ -265,7 +268,7 @@ plt.ylabel('MAE')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
-fig_acc.savefig("Output/engine2/model_mae.png")
+fig_acc.savefig("Output/engine3/model_mae.png")
 
 # summarize history for Loss
 fig_acc = plt.figure(figsize=(10, 10))
@@ -276,7 +279,7 @@ plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
-fig_acc.savefig("Output/engine2/model_regression_loss.png")
+fig_acc.savefig("Output/engine3/model_regression_loss.png")
 
 # training metrics
 scores = model.evaluate(seq_array, label_array, verbose=1, batch_size=200)
@@ -287,7 +290,7 @@ y_pred = model.predict(seq_array,verbose=1, batch_size=200)
 y_true = label_array
 
 test_set = pd.DataFrame(y_pred)
-test_set.to_csv('Output/engine2/submit_train.csv', index = None)
+test_set.to_csv('Output/engine3/submit_train.csv', index = None)
 
 ##################################
 # EVALUATE ON TEST DATA
@@ -325,7 +328,7 @@ if os.path.isfile(model_path):
     y_true_test = label_array_test_last
 
     test_set = pd.DataFrame(y_pred_test)
-    test_set.to_csv('Output/engine2/submit_test.csv', index = None)
+    test_set.to_csv('Output/engine3/submit_test.csv', index = None)
 
     # Plot in blue color the predicted data and in green color the
     # actual data to verify visually the accuracy of the model.
@@ -337,4 +340,4 @@ if os.path.isfile(model_path):
     plt.xlabel('row')
     plt.legend(['predicted', 'actual data'], loc='upper left')
     plt.show()
-    fig_verify.savefig("Output/engine2/model_regression_verify.png")
+    fig_verify.savefig("Output/engine3/model_regression_verify.png")

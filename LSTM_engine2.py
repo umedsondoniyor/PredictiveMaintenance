@@ -11,34 +11,31 @@ from sklearn import preprocessing
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, LSTM, Activation
 
-# Setting seed for reproducibility
+# Setting seed for reproducability
 np.random.seed(1234)
 PYTHONHASHSEED = 0
 # define path to save model [;, ]
-model_path = 'Output/engine1/regression_model.h5'
+model_path = 'Output/engine2/regression_model2.h5'
 
-# read training data
-train_df = pd.read_csv('data/train/train_1.txt', sep=" ", header=None,engine='python')
+# read training data # read
+train_df = pd.read_csv('data/train/train_2.txt', sep=" ", header=None,engine='python')
 train_df.drop(train_df.columns[[26, 27]], axis=1, inplace=True)
 train_df.columns = ['id', 'cycle', 'setting1', 'setting2', 'setting3', 's1', 's2', 's3',
                      's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11', 's12', 's13', 's14',
                      's15', 's16', 's17', 's18', 's19', 's20', 's21']
 
+
 # read test data
-test_df = pd.read_csv('data/test/test_1.txt', sep=" ", header=None,engine='python')
+test_df = pd.read_csv('data/test/test_2.txt', sep=" ", header=None,engine='python')
 test_df.drop(test_df.columns[[26, 27]], axis=1, inplace=True)
 test_df.columns = ['id', 'cycle', 'setting1', 'setting2', 'setting3', 's1', 's2', 's3',
                      's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11', 's12', 's13', 's14',
                      's15', 's16', 's17', 's18', 's19', 's20', 's21']
 
-# read ground truth data or Remaining Useful Life
-truth_df = pd.read_csv('data/RUL/RUL_1.txt', sep=" ", header=None,engine='python')
+
+# read ground truth data# read
+truth_df = pd.read_csv('data/RUL/RUL_2.txt', sep=" ", header=None,engine='python')
 truth_df.drop(truth_df.columns[[1]], axis=1, inplace=True)
-
-
-
-
-
 
 # Data Labeling - generate column RUL
 rul = pd.DataFrame(train_df.groupby('id')['cycle'].max()).reset_index()
@@ -51,13 +48,20 @@ train_df.head()
 
 
 
-# generate label columns for training data
-w1 = 30
-w0 = 15
-train_df['label1'] = np.where(train_df['RUL'] <= w1, 1, 0)
+
+"""
+Generate label columns for training data training data is labeled, where "RUL", label1", and "label2" are labels
+for regression, binary classification, and multi-class classification where I only did with regression
+Here w0 and w1 are predefined use case related parameters which are used to label the training data.
+The customer needs to decide how far ahead of time the alert of failure should trigger before the actual failure event.
+"""
+w1 = 30     # label1 = 1
+w0 = 15     # label2 = 2
+train_df['label1'] = np.where(train_df['RUL'] <= w1, 1, 0 )
 train_df['label2'] = train_df['label1']
 train_df.loc[train_df['RUL'] <= w0, 'label2'] = 2
 train_df.head()
+
 
 
 
@@ -73,7 +77,7 @@ join_df = train_df[train_df.columns.difference(cols_normalize)].join(norm_train_
 train_df = join_df.reindex(columns = train_df.columns)
 train_df.head()
 
-train_dftrain_d  = train_df.sort_values(['id','cycle'])
+train_dftrain_d  = train_df.sort_values(['id', 'cycle'])
 train_df.head()
 
 # MinMax normalization (from 0 to 1)
@@ -97,7 +101,7 @@ train_df.drop('max', axis=1, inplace=True)
 train_df.head()
 
 
-# generate column max for test data#
+# generate column max for test data# genera
 rul = pd.DataFrame(test_df.groupby('id')['cycle'].max()).reset_index()
 rul.columns = ['id', 'max']
 truth_df.columns = ['more']
@@ -119,6 +123,8 @@ test_df.loc[test_df['RUL'] <= w0, 'label2'] = 2
 test_df.head()
 
 
+
+
 # pick a large window size of 50 cycles
 sequence_length = 50
 
@@ -133,15 +139,15 @@ engine_id3_50cycleWindow2 = engine_id3_50cycleWindow[cols2]
 
 
 
-# plotting sensor data for engine ID 3 prior to a failure point - sensors 1-10 #
+# plotting sensor data for engine ID 3 prior to a failure point - sensors 1-10 # plotti
 ax1 = engine_id3_50cycleWindow1.plot(subplots=True, sharex=True, figsize=(20,20))
 
 
-# plotting sensor data for engine ID 3 prior to a failure point - sensors 11-21 #
+# plotting sensor data for engine ID 3 prior to a failure point - sensors 11-21 # plotti
 ax2 = engine_id3_50cycleWindow2.plot(subplots=True, sharex=True, figsize=(20,20))
 
 
-# function to reshape features into (samples, time steps, features) #
+# function to reshape features into (samples, time steps, features) # functi
 def gen_sequence(id_df, seq_length, seq_cols):
     """ Only sequences that meet the window-length are considered, no padding is used. This means for testing
     we need to drop those which are below the window-length. An alternative would be to pad sequences so that
@@ -264,7 +270,7 @@ plt.ylabel('R^2')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
-fig_acc.savefig("Output/engine1/model_r2.png")
+fig_acc.savefig("Output/engine2/model_r2.png")
 
 # summarize history for MAE
 fig_acc = plt.figure(figsize=(10, 10))
@@ -275,7 +281,7 @@ plt.ylabel('MAE')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
-fig_acc.savefig("Output/engine1/model_mae.png")
+fig_acc.savefig("Output/engine2/model_mae.png")
 
 # summarize history for Loss
 fig_acc = plt.figure(figsize=(10, 10))
@@ -286,7 +292,7 @@ plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
-fig_acc.savefig("Output/engine1/model_regression_loss.png")
+fig_acc.savefig("Output/engine2/model_regression_loss.png")
 
 # training metrics
 scores = model.evaluate(seq_array, label_array, verbose=1, batch_size=200)
@@ -297,7 +303,7 @@ y_pred = model.predict(seq_array,verbose=1, batch_size=200)
 y_true = label_array
 
 test_set = pd.DataFrame(y_pred)
-test_set.to_csv('Output/engine1/submit_train.csv', index = None)
+test_set.to_csv('Output/engine2/submit_train.csv', index = None)
 
 ##################################
 # EVALUATE ON TEST DATA
@@ -335,7 +341,7 @@ if os.path.isfile(model_path):
     y_true_test = label_array_test_last
 
     test_set = pd.DataFrame(y_pred_test)
-    test_set.to_csv('Output/engine1/submit_test.csv', index = None)
+    test_set.to_csv('Output/engine2/submit_test.csv', index = None)
 
     # Plot in blue color the predicted data and in green color the
     # actual data to verify visually the accuracy of the model.
@@ -347,4 +353,4 @@ if os.path.isfile(model_path):
     plt.xlabel('row')
     plt.legend(['predicted', 'actual data'], loc='upper left')
     plt.show()
-    fig_verify.savefig("Output/engine1/model_regression_verify.png")
+    fig_verify.savefig("Output/engine2/model_regression_verify.png")
